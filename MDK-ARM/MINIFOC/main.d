@@ -55,4 +55,4 @@ minifoc/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Core\Inc\usart.h ..\Core\Inc\gpio.h \
   G:\keil5.37\ARM\ARMCLANG\Bin\..\include\stdio.h ..\USER\SVPWM.h \
   ..\USER\Cordic_.h ..\USER\MT6816.h ..\USER\SMO.h ..\USER\BLDC.h \
-  ..\USER\pid.h
+  ..\USER\pid.h ..\USER\CoggingTorqueCheck.h

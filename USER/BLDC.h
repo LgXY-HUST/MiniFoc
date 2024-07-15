@@ -13,6 +13,8 @@
 #include "tim.h"
 #include "adc.h"
 #include "usart.h"
+#include "CoggingTorqueCheck.h"
+
 //constant
 
 #define 	Sqrt3_BLDC  		(float)1.732051f
@@ -30,9 +32,12 @@ float Ia, Ib , Ic;
 float Ialpha , Ibeta;
 float Id , Iq , Id_exp ,  Iq_exp ;
 float Vd , Vq , Vbus;
-int16_t raw_angle  ;//没有换算前的整形输出
+int16_t raw_angle  , raw_angle_buffer ;//没有换算前的整形输出
 int  psc_vcal , cal_psc;//速度分频，用2k ， 先
+
 float thetaE , fil_thetaE  ;//电角
+int16_t thiserr_pos , exppos , errpos , lasterr , averposerr;//位置误差计算
+//int16_t errpos;
 float theta ,theta_last , delta_theta ,  theta_exp;//当前位置 ， 期望位置；
 float w_mec , w_mecexp ;//当前机械速度 ， 机械角速度 rad/s
 float costhetaE , sinthetaE;//sin cos
@@ -53,4 +58,45 @@ void anglehandler(BLDC*B);//位置换算
 
 extern BLDC ThisBLDC;
 extern int16_t raw_angle_buffer;
+#endif
+
+
+#ifndef  __CORGGINGTORQUE_CHECK
+#define  __CORGGINGTORQUE_CHECK
+
+
+//#include "main.h"
+//#include "BLDC.h"
+//#include "pid.h"
+//macro
+#define		calibration_step				50//校准节点，50个点一次
+#define  calibration_samplenum		16384/50	//每50个节点校一次 , 16384/100
+
+
+//cmd
+
+
+
+//struct
+typedef struct IqComp_CalStruct
+{
+	uint32_t If_ThisPointComplete , getcnt;
+	int16_t lasterr_pos , thiserr_pos  , lastpos , thispos , exppos;
+	float err , lasterr ,averpos;//这次和上一次平均误差，平均位置,判据
+	float Iq_this;
+}IqComp_CalStruct;
+
+
+//函数
+void InitcompIq_calibration(BLDC*B, IqComp_CalStruct* qc);//齿槽转矩补偿校准函数
+void compIq_calibration(BLDC*B , IqComp_CalStruct* qc);//齿槽转矩补偿校准函数
+float compIq_out(BLDC*B , IqComp_CalStruct* qc);//用电机
+float err_position_cal(BLDC*B , IqComp_CalStruct* qc);
+void If_ThisPointComplete(BLDC*B , IqComp_CalStruct* qc);
+//para
+extern 	PIDP_Struct  ComIqPidStruct;
+extern 	IqComp_CalStruct	ThisIqComp;
+//齿槽点 q轴电流 
+extern uint8_t __If_compIq_calibration;
+extern float  Iq_comp[calibration_samplenum];
 #endif

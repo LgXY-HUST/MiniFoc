@@ -3,9 +3,9 @@
 <title>Static Call Graph - [MINIFOC\MINIFOC.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image MINIFOC\MINIFOC.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6180002: Last Updated: Fri Jul 12 10:07:21 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6180002: Last Updated: Mon Jul 15 10:14:06 2024
 <BR><P>
-<H3>Maximum Stack Usage =        372 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        356 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; MX_ADC1_Init &rArr; HAL_ADC_Init &rArr; HAL_ADC_MspInit &rArr; HAL_GPIO_Init
 <P>
@@ -601,7 +601,6 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitBLDC
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[6f]"></a>HAL_GPIO_Init</STRONG> (Thumb, 474 bytes, Stack size 52 bytes, stm32g4xx_hal_gpio.o(.text.HAL_GPIO_Init))
@@ -626,9 +625,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[69]"></a>HAL_GetTick</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32g4xx_hal.o(.text.HAL_GetTick))
-<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Enable
+<BR><BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Enable
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_PeriphCLKConfig
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
@@ -813,7 +812,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[80]"></a>HAL_TIM_IRQHandler</STRONG> (Thumb, 460 bytes, Stack size 24 bytes, stm32g4xx_hal_tim.o(.text.HAL_TIM_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = HAL_TIM_IRQHandler &rArr; HAL_TIM_OC_DelayElapsedCallback &rArr; MT6816_ReadVal &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitFifoStateUntilTimeout
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = HAL_TIM_IRQHandler &rArr; HAL_TIM_OC_DelayElapsedCallback &rArr; MT6816_ReadVal &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OC_DelayElapsedCallback
@@ -847,8 +846,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM1_Init
 </UL>
 
-<P><STRONG><a name="[82]"></a>HAL_TIM_OC_DelayElapsedCallback</STRONG> (Thumb, 832 bytes, Stack size 48 bytes, bldc.o(.text.HAL_TIM_OC_DelayElapsedCallback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = HAL_TIM_OC_DelayElapsedCallback &rArr; MT6816_ReadVal &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitFifoStateUntilTimeout
+<P><STRONG><a name="[82]"></a>HAL_TIM_OC_DelayElapsedCallback</STRONG> (Thumb, 972 bytes, Stack size 56 bytes, bldc.o(.text.HAL_TIM_OC_DelayElapsedCallback))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = HAL_TIM_OC_DelayElapsedCallback &rArr; MT6816_ReadVal &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_GetValue
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
@@ -980,7 +979,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32g431xx.o(RESET)
 </UL>
-<P><STRONG><a name="[a3]"></a>InitBLDC</STRONG> (Thumb, 452 bytes, Stack size 56 bytes, bldc.o(.text.InitBLDC))
+<P><STRONG><a name="[a3]"></a>InitBLDC</STRONG> (Thumb, 476 bytes, Stack size 56 bytes, bldc.o(.text.InitBLDC))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = InitBLDC &rArr; MT6816_ReadVal &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
@@ -1127,21 +1126,21 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32g431xx.o(.text)
 </UL>
 <P><STRONG><a name="[24]"></a>TIM1_CC_IRQHandler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32g4xx_it.o(.text.TIM1_CC_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = TIM1_CC_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_OC_DelayElapsedCallback &rArr; MT6816_ReadVal &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitFifoStateUntilTimeout
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = TIM1_CC_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_OC_DelayElapsedCallback &rArr; MT6816_ReadVal &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32g431xx.o(RESET)
 </UL>
 <P><STRONG><a name="[23]"></a>TIM1_TRG_COM_TIM17_IRQHandler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32g4xx_it.o(.text.TIM1_TRG_COM_TIM17_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = TIM1_TRG_COM_TIM17_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_OC_DelayElapsedCallback &rArr; MT6816_ReadVal &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitFifoStateUntilTimeout
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = TIM1_TRG_COM_TIM17_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_OC_DelayElapsedCallback &rArr; MT6816_ReadVal &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32g431xx.o(RESET)
 </UL>
 <P><STRONG><a name="[22]"></a>TIM1_UP_TIM16_IRQHandler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32g4xx_it.o(.text.TIM1_UP_TIM16_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = TIM1_UP_TIM16_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_OC_DelayElapsedCallback &rArr; MT6816_ReadVal &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitFifoStateUntilTimeout
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = TIM1_UP_TIM16_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_OC_DelayElapsedCallback &rArr; MT6816_ReadVal &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
 </UL>
@@ -1217,13 +1216,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitBLDC
 </UL>
 
-<P><STRONG><a name="[50]"></a>main</STRONG> (Thumb, 332 bytes, Stack size 136 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 372<LI>Call Chain = main &rArr; MX_ADC1_Init &rArr; HAL_ADC_Init &rArr; HAL_ADC_MspInit &rArr; HAL_GPIO_Init
+<P><STRONG><a name="[50]"></a>main</STRONG> (Thumb, 312 bytes, Stack size 120 bytes, main.o(.text.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 356<LI>Call Chain = main &rArr; MX_ADC1_Init &rArr; HAL_ADC_Init &rArr; HAL_ADC_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;angleanaloging
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_SMO
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitBLDC
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitCordic

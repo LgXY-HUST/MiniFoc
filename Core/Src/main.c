@@ -38,6 +38,7 @@ int fputc(int ch, FILE *f)
 	HAL_UART_Transmit(&huart2,(uint8_t*)&ch,1,10);
 	return ch;
 }
+
 #include "SVPWM.h"
 #include "Cordic_.h"
 #include "math.h"
@@ -46,6 +47,7 @@ int fputc(int ch, FILE *f)
 #include "SMO.h"
 #include "tim.h"
 #include "BLDC.h"
+
 
 
 uint8_t flag_cmd=0;
@@ -158,6 +160,10 @@ int main(void)
 		InitCordic();
 		InitBLDC(&ThisBLDC);
 		Init_SMO(&ThisS , 5.f/8.f*0.4 , 5.f/8.f*0.4 , 5 , 1);
+		
+		//InitcompIq_calibration(&ThisBLDC , &ThisIqComp);		
+		//compIq_calibration(&ThisBLDC , &ThisIqComp);
+
 		 //ThisBLDC.w_mecexp=-3.14159;
 		//Init_SMO(&ThisS , 0.00005f/0.00008f*0.4 , 0.00005f/0.00008f*0.4 , 5 , 1);
 		
@@ -167,15 +173,19 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		HAL_Delay(10);
+		//HAL_Delay(10);
 		HAL_GPIO_WritePin(GPIOA , GPIO_PIN_4 , GPIO_PIN_SET);
 		theta=angleanaloging(theta);
+//		compIq_calibration(&ThisBLDC , &ThisIqComp);
 //		Org_E_Calibration(flag_cmd , SetVal);
 //		SV_PWM_Cal(&ThisSV , 4 , 0, 10 , sinf(theta) , cosf(theta)  );
 //		printf("%.4f\n", ThisBLDC.Id);
-		printf("%.4f,%d,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f\n" , ThisBLDC.theta , ThisBLDC.raw_angle  ,  ThisBLDC.fil_thetaE , ThisBLDC.thetaE , ThisBLDC.w_mec , \
+	//	printf("%.4f,%d,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f\n" , ThisBLDC.theta , ThisBLDC.raw_angle  ,  ThisBLDC.fil_thetaE , ThisBLDC.thetaE , ThisBLDC.w_mec , \
 					ThisBLDC.Ia, ThisBLDC.sinthetaE ,ThisBLDC.costhetaE);
 //    printf("%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f\n" , ThisSV.Ta , ThisSV.Tb ,  ThisBLDC.delta_theta ,ThisBLDC.theta ,ThisBLDC.thetaE,ThisBLDC.w_mec , ThisBLDC.sinthetaE, ThisBLDC.costhetaE );
+    printf("%d,%d,%d,%d,%.4f,%.4f,%.4f,%.4f\n" , ThisBLDC.exppos , ThisBLDC.thiserr_pos ,  ThisBLDC.raw_angle_buffer ,ThisBLDC.averposerr ,ThisBLDC.thetaE,ThisBLDC.w_mec , ThisBLDC.sinthetaE, ThisBLDC.costhetaE );
+
+
  		HAL_GPIO_WritePin(GPIOA , GPIO_PIN_4 , GPIO_PIN_RESET);  
     /* USER CODE END WHILE */
 

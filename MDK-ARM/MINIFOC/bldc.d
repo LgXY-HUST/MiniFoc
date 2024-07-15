@@ -53,4 +53,4 @@ minifoc/bldc.o: ..\USER\BLDC.c ..\USER\BLDC.h ..\Core\Inc\main.h \
   G:\keil5.37\ARM\ARMCLANG\Bin\..\include\math.h ..\USER\SVPWM.h \
   ..\USER\Cordic_.h ..\Core\Inc\cordic.h ..\USER\MT6816.h \
   ..\Core\Inc\spi.h ..\USER\SMO.h ..\USER\pid.h ..\Core\Inc\tim.h \
-  ..\Core\Inc\adc.h ..\Core\Inc\usart.h
+  ..\Core\Inc\adc.h ..\Core\Inc\usart.h ..\USER\CoggingTorqueCheck.h

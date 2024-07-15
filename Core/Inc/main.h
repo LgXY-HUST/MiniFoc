@@ -44,6 +44,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "arm_math.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
