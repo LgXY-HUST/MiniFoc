@@ -73,8 +73,11 @@ void InitBLDC(BLDC*B)//  初始化+开定时器
 //	initPIDP(&(B->pid_iq) ,7.9f,1.9f,0 ,-5 , 5 );
 	
 //考虑齿槽转矩能用 ， 控制位置
-	initPIDP(&(B->pid_p) ,0.0001f,0.0001f,0 ,-2 , 2 );
+	initPIDP(&(B->pid_p) ,0.0011f,0.0000011f,0.002f ,-0.3 , 0.3 );
 	initPIDP(&(B->pid_v) ,0.05f,0.000005f,0 ,-0.8 , 0.8 );
+	
+//正常位置-速度环	
+	initPIDP(&(B->pid_p) ,0.00001f,0.00001f,0 ,-0.5 , 0.5 );	
 	initPIDP(&(B->pid_id) ,7.9f,1.9f,0 ,-5 , 5 );	
 	initPIDP(&(B->pid_iq) ,7.9f,1.9f,0 ,-5 , 5 );	
 
@@ -284,8 +287,11 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
 			//ThisBLDC.Iq_exp=tagIq;
 			//ThisBLDC.Iq_exp=compIq_out(&ThisBLDC , &ThisIqComp);
 			positionerror_cal(&ThisBLDC);
-			ThisBLDC.w_mecexp=PIDP(&(ThisBLDC.pid_p) , ThisBLDC.averposerr);
-			ThisBLDC.Iq_exp=PIDP(&(ThisBLDC.pid_v) , ThisBLDC.w_mecexp-ThisBLDC.w_mec);
+			//正常位置-速度环
+			//ThisBLDC.w_mecexp=PIDP(&(ThisBLDC.pid_p) , ThisBLDC.averposerr);
+			//ThisBLDC.Iq_exp=PIDP(&(ThisBLDC.pid_v) , ThisBLDC.w_mecexp-ThisBLDC.w_mec);
+			//电流电压环
+			ThisBLDC.Iq_exp=PIDP(&(ThisBLDC.pid_p) , ThisBLDC.averposerr);
 			ThisBLDC.Vq=PIDP(&(ThisBLDC.pid_iq) , ThisBLDC.Iq_exp-ThisBLDC.Iq);	//暂时不加前馈		
 			ThisBLDC.Vd=PIDP(&(ThisBLDC.pid_id) , ThisBLDC.Id_exp-ThisBLDC.Id);					
 			//SV
